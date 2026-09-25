@@ -54,19 +54,25 @@ def random_h():
     h = rd.uniform(0.1, 20.0)  # Random height between 1 and 20 meters
     return h
 
-def main():
+def gradient_method():
     # Initial values
     r = random_r()  # Initial radius
     h = random_h()  # Initial height
-    mu = 1e2 # Penalty parameter
+    mu = 10 # Penalty parameter
     alpha = 1e-7  # Learning rate
     delta = 1e-5  # Small change for numerical derivative
     max_iterations = 1000000
-    tolerance = 1e-7
+    tolerance = 1e-5
     i = 0
 
     #i = iteration
     for i in range(max_iterations):
+        #updating alpha and mu
+        if i % 500 == 0 and i > 0:
+            if alpha < 1 and alpha > 1e-9:
+                alpha *= 0.99
+            if mu < 10000:
+                mu *= 1.2
 
         # Update r and h using gradient
         r_new, h_new = gradient_r(r,h, mu, delta, alpha), gradient_h(r,h, mu, delta, alpha)
@@ -81,20 +87,24 @@ def main():
 
         r, h = r_new, h_new
 
-    #print(f"Number of iterations: {i}")
-    #print(f"Optimized radius: {r:.8f} m")
-    #print(f"Optimized height: {h:.8f} m")
-    #print(f"Minimum cost: R$ {cost_function(r, h):.2f}")
-
     return cost_function(r, h)
 
 def statistic_points_plot(cf):
     plt.plot(cf)
     plt.show()
 
-# Initialize cf as a list to store the costs
-cf = [0.0] * 30
+def main():
+    # Initialize cf as a list to store the costs
+    cf = [0.0] * 30
 
-for i in range(30):
-    cf[i] = main()
-    print(f"Iteration {i + 1}")
+    for i in range(30):
+        cf[i] = gradient_method()
+        print(f"Iteration {i + 1}")
+
+    statistic_points_plot(cf)
+    max_cf = np.max(cf)
+    min_cf = np.min(cf)
+    mean_cf = np.mean(cf)
+    print(f"Maximum cost: R$ {max_cf:.2f} | Minimum cost: R$ {min_cf:.2f} | Mean cost: R$ {mean_cf:.2f}")
+
+main()
