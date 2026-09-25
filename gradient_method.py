@@ -59,7 +59,7 @@ def main():
     r = random_r()  # Initial radius
     h = random_h()  # Initial height
     mu = 1e2 # Penalty parameter
-    alpha = 1e-6  # Learning rate
+    alpha = 1e-7  # Learning rate
     delta = 1e-5  # Small change for numerical derivative
     max_iterations = 1000000
     tolerance = 1e-7
