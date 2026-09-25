@@ -23,8 +23,7 @@ def constraint(r, h):
 
 
 def penalty_function(r, h, mu):
-    g = constraint(r, h)
-    return cost_function(r, h) + mu * (max(0, g)) ** 2
+    return cost_function(r, h) + mu * (max(0, constraint(r, h))) ** 2
 
 
 def partial_derivative_r(r, h, mu, delta):
@@ -36,30 +35,26 @@ def partial_derivative_h(r, h, mu, delta):
 
 
 def gradient_r(r,h, mu, delta, alpha):
-    r += - (alpha * partial_derivative_r(r,h, mu, delta))
-    return r
+    return r - (alpha * partial_derivative_r(r,h, mu, delta))
 
 
 def gradient_h(r,h, mu, delta, alpha):
-    h += - (alpha * partial_derivative_h(r,h, mu, delta))
-    return h
+    return h - (alpha * partial_derivative_h(r,h, mu, delta))
 
 
 def random_r():
-    r = rd.uniform(0.1, 10.0)  # Random radius between 1 and 10 meters
-    return r
+    return rd.uniform(0.1, 10.0)  # Random radius between 1 and 10 meters
 
 
 def random_h():
-    h = rd.uniform(0.1, 20.0)  # Random height between 1 and 20 meters
-    return h
+    return rd.uniform(0.1, 20.0)  # Random height between 1 and 20 meters
 
 def gradient_method():
     # Initial values
     r = random_r()  # Initial radius
     h = random_h()  # Initial height
-    mu = 10 # Penalty parameter
-    alpha = 1e-7  # Learning rate
+    mu = 10 # Penalty parameter obs. 10e4
+    alpha = 1e-7  # Learning rate obs. 10e7
     delta = 1e-5  # Small change for numerical derivative
     max_iterations = 1000000
     tolerance = 1e-5
