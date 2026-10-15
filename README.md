@@ -54,13 +54,48 @@ $$h^{(k+1)} = h^{(k)} - \alpha \left.\frac{\partial P}{\partial h}\right\vert{}^
 ---
 
 ## Getting Started
+## Getting Started
+
+
 
 ### Prerequisites
-* Python 3.10+
-* `numpy`, `matplotlib`
+
+- Python 3.10+
+
+- `numpy`
+
+- `matplotlib`
+
+
 
 ### Installation
-```bash
-git clone [https://github.com/](https://github.com/)<username>/<repo-name>.git
-cd <repo-name>
-pip install -r requirements.txt
+
+
+
+1. Clone the repository:
+
+   ```bash
+
+   git clone https://github.com/lhff97/Cylindrical-Storage-Tank-Optimization.git
+
+   ```
+
+
+
+2. Navigate to the project directory:
+
+   ```bash
+
+   cd Cylindrical-Storage-Tank-Optimization
+
+   ```
+   
+
+
+3. Install the dependencies:
+
+   ```bash
+
+   pip install -r requirements.txt
+
+   ```
