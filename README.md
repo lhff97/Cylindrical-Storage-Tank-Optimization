@@ -54,7 +54,6 @@ $$h^{(k+1)} = h^{(k)} - \alpha \left.\frac{\partial P}{\partial h}\right\vert{}^
 ---
 
 ## Getting Started
-## Getting Started
 
 
 
